@@ -8,6 +8,11 @@ projet comportant
 - Une phase d'analyse 
 - Une phase de "prédiction"
 
+On finira par
+- Une presentation orale via un notebook 
+- Une semaine après on rendra le code final en tenant compte des questions pendant la soutenance
+
+
 ## Supports de cours 
 On mettra ici
 - le contenu généré durant les séances
