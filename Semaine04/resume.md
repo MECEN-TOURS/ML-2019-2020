@@ -1,5 +1,0 @@
-- Sérialisation de résultats via csv et json
-- Tests unitaires avant modification
-- Différence module package 
-- Version control avec git
-- Selenium pour scraper certains sites commerciaux
