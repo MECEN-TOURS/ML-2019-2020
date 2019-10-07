@@ -1,5 +1,5 @@
 from statistiques import extrait_pays
-from gestion_page import extrait_arbre
+from gestion_pages import extrait_arbre
 
 def test_extrait_pays():
     adresse = "https://fr.wikipedia.org/wiki/France"
