@@ -16,17 +16,21 @@ Stats =  namedtuple(
                     )
 
 
-def extrait_pays(page):
+def extrait_pays(arbre):
     """Extraction du nom du pays"""
-    raise NotImplementedError    
+    noeud, *_ = arbre.find_all("h1")
+    resultat_final = noeud.text
+    return resultat_final
+
 
 def extrait_pib(arbre):
     """Prends une page wikipedia de pays sous forme d'arbre et renvoit son PIB."""
     noeud, *_ = arbre.find_all("a", text="PIB nominal")
     resultat = noeud.find_next("td")
-    motif = re.compile("(\d)\\xA0?(\d{3}),(\d{3})")
-    (n1, n2, n3), = motif.findall(resultat.text)
-    resultat_final = int(n1 + n2 + n3 + "0" * 6)
+    motif = re.compile("(\d+)(\\xA0|,|\.)?(\d*)(\\xA0|,|\.)?(\d*)")
+    n=motif.search(resultat.text).group()
+    n=n.replace(',','.')
+    resultat_final = n
     return resultat_final
 
 
@@ -42,7 +46,13 @@ def extrait_superficie(arbre):
 
 def extrait_population(arbre):
     """Récupération de la statistique de population"""
-    raise NotImplementedError
+    noeud, = arbre.find_all("a", text="Population totale")
+    resultat = noeud.find_next("td")
+    motif = re.compile("(\d+)(\\xA0|,|\.)?(\d*)(\\xA0|,|\.)?(\d*)")
+    n=motif.search(resultat.text).group()
+    n=n.replace(',','.')
+    resultat_final = n
+    return resultat_final
 
 
 def extrait_dette(arbre):
