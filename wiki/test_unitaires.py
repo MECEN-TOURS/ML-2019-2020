@@ -22,6 +22,12 @@ from statistiques import (
     extrait_regime,
 )
 from gestion_pages import extrait_arbre
+from adresses import recupere_liste_adresses
+
+
+def test_liste_ue():
+    """Vérification des addresses de l'UE par le nombre de résultats"""
+    assert len(recupere_liste_adresses()) == 28
 
 
 def test_extrait_pays():
@@ -53,21 +59,27 @@ def test_extrait_superficie():
 
 
 def test_extrait_dette():
-    """Vérification du fonctionnement de extrait_superficie en km2"""
+    """Vérification du fonctionnement de extrait_dette en euros"""
     adresse = "https://fr.wikipedia.org/wiki/France"
     page = extrait_arbre(adresse)
     assert extrait_dette(page) == 2_332_300_000_000
 
 
 def test_extrait_monnaie():
-    """Vérification du fonctionnement de extrait_superficie en km2"""
+    """Vérification du fonctionnement de extrait_dette en euros"""
     adresse = "https://fr.wikipedia.org/wiki/France"
     page = extrait_arbre(adresse)
     assert extrait_monnaie(page) == "euro"
 
 
 def test_extrait_regime():
-    """Vérification du fonctionnement de extrait_superficie en km2"""
+    """Vérification du fonctionnement de extrait_regime via France, Allemagne et Royaume-Uni"""
     adresse = "https://fr.wikipedia.org/wiki/France"
     page = extrait_arbre(adresse)
-    assert extrait_regime(page) == "presidentiel"
+    assert extrait_regime(page) == "republique, presidentiel"
+    adresse = "https://fr.wikipedia.org/wiki/Allemagne"
+    page = extrait_arbre(adresse)
+    assert extrait_regime(page) == "republique, parlementaire"
+    adresse = "https://fr.wikipedia.org/wiki/Royaume-Uni"
+    page = extrait_arbre(adresse)
+    assert extrait_regime(page) == "monarchie, parlementaire"
