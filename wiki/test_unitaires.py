@@ -17,6 +17,9 @@ from statistiques import (
     extrait_pib,
     extrait_population,
     extrait_superficie,
+    extrait_monnaie,
+    extrait_dette,
+    extrait_regime,
 )
 from gestion_pages import extrait_arbre
 
@@ -32,18 +35,39 @@ def test_extrait_pib():
     """Vérification du fonctionnement de extrait_pib en euros"""
     adresse = "https://fr.wikipedia.org/wiki/France"
     page = extrait_arbre(adresse)
-    assert extrait_pib(page) == 2775252000
+    assert extrait_pib(page) == 2_775_252_000_000
 
 
 def test_extrait_population():
     """Vérification du fonctionnement de extrait_population"""
     adresse = "https://fr.wikipedia.org/wiki/France"
     page = extrait_arbre(adresse)
-    assert extrait_population(page) == 67795000
+    assert extrait_population(page) == 67_795_000
 
 
 def test_extrait_superficie():
     """Vérification du fonctionnement de extrait_superficie en km2"""
     adresse = "https://fr.wikipedia.org/wiki/France"
     page = extrait_arbre(adresse)
-    assert extrait_superficie(page) == 632734
+    assert extrait_superficie(page) == 632_734
+
+
+def test_extrait_dette():
+    """Vérification du fonctionnement de extrait_superficie en km2"""
+    adresse = "https://fr.wikipedia.org/wiki/France"
+    page = extrait_arbre(adresse)
+    assert extrait_dette(page) == 2_332_300_000_000
+
+
+def test_extrait_monnaie():
+    """Vérification du fonctionnement de extrait_superficie en km2"""
+    adresse = "https://fr.wikipedia.org/wiki/France"
+    page = extrait_arbre(adresse)
+    assert extrait_monnaie(page) == "euro"
+
+
+def test_extrait_regime():
+    """Vérification du fonctionnement de extrait_superficie en km2"""
+    adresse = "https://fr.wikipedia.org/wiki/France"
+    page = extrait_arbre(adresse)
+    assert extrait_regime(page) == "presidentiel"
